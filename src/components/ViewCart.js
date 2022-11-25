@@ -6,11 +6,20 @@ function ViewCart() {
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.cartData.arrayValue);
   console.log("state of viewCart", getData);
-  console.log(getData.quntity)
-  console.log("quntity",getData.quntity=getData.quntity+1,getData.quntity)
-  const handleQuntity = () =>{
-    console.log("enter prompt")
-    prompt("enter qty")
+
+  const handleQty = (obj,e) =>{
+     
+    getData.map((elem)=>{     
+        if(obj.id===elem.id){
+          if(e.target.value>0)
+        {  
+          elem.quntity = [e.target.value]
+        }
+
+          console.log("qty",elem.quntity)          
+        }       
+      })
+   
   }
   return (
     <div className="viewCart">
@@ -19,16 +28,9 @@ function ViewCart() {
           <>
             <div className="img_btn">
               <img style={{ width: "10rem" }} src={items.imageUrl} />
-              <div className="viewcart_btn ">
+              <div className="">
               <label for="cars">quntity:</label>
-
-<select name="number" id="cars">z
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option  value="3"> <button onClick={handleQuntity} >more</button> </option>
- 
-</select>
+              <input type="number" min="0"  onChange={(e)=>handleQty(items,e)}  />
               </div>
             </div>
             <div>
@@ -37,8 +39,7 @@ function ViewCart() {
             </div>
             <button
               style={{ marginLeft: "5px" }}
-              onClick={() => dispatch(removeToCart({ id: items.id }))}
-            >
+              onClick={() => dispatch(removeToCart({ id: items.id }))} >
               Remove
             </button>
           </>

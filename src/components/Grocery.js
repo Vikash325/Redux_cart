@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import { NavItem, NavLink } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { addToCart, removeToCart } from "../service/actions/action";
-
-function Iphone() {
-  const dispatch = useDispatch();
-  const getData = useSelector((state) => state.cartData.cartData);
-  const navigate = useNavigate()
-
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addToCart } from '../service/actions/action'
+function Grocery() {
+    const dispatch =  useDispatch()
+    const selectGrocery = useSelector(state=>state.cartData.grocery )
+    console.log("grocery",  selectGrocery)
   return (
-    <div className="main-div">
-      {getData.map((items) => {
-        return (
-          <>
-            <div className="main">
+    <div>
+      {
+        selectGrocery.map((items)=>{
+            return <div>
+                <div className="main">
               <div className="container">
-                <img src={items.imageUrl} alt="iphone img" />
+                <img src={items.filename} alt="iphone img" />
               </div>
               <div className="about">
                 <h3>{items.name}</h3>
@@ -42,11 +39,12 @@ function Iphone() {
                 </div>
               </div>
             </div>
-          </>
-        );
-      })}
+            </div>
+            
+        })
+      }
     </div>
-  );
+  )
 }
 
-export default Iphone;
+export default Grocery
