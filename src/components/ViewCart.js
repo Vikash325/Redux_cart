@@ -15,8 +15,8 @@ function ViewCart() {
         {  
           elem.quntity = [e.target.value]
         }
-
           console.log("qty",elem.quntity)          
+          console.log("qty",elem)          
         }       
       })
    

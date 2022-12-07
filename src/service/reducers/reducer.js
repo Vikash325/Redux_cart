@@ -308,6 +308,7 @@ export default function cardItems(state = initialState, action) {
         arrayvalue: state.arrayValue.push(action.data.items),
       };
     case REMOVE_TO_CART:
+
       console.log("remove id", action.id);
 
       const newArrayValue = state.arrayValue.filter(
