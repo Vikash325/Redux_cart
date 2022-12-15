@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import { NavItem, NavLink } from "react-bootstrap";
+// import { NavItem, NavLink } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addToCart, removeToCart } from "../service/actions/action";
 
 function Iphone() {
   const dispatch = useDispatch();
-  const getData = useSelector((state) => state.cartData.cartData);
+  const getData = useSelector((state) => state.cartData.data);
+  console.log("getData",getData)
   const navigate = useNavigate()
 
   return (
     <div className="main-div">
-      {getData.map((items) => {
+  
+      {getData.length>0 && getData.map((items) => {
         return (
           <>
             <div className="main">
@@ -25,7 +27,6 @@ function Iphone() {
                   <div className="items_span">
                     <span>{items.price}</span>
                   </div>
-
                   <div>
                     {items?.added ? (
 

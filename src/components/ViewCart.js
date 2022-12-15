@@ -6,10 +6,11 @@ function ViewCart() {
   const dispatch = useDispatch();
   const getData = useSelector((state) => state.cartData.arrayValue);
   console.log("state of viewCart", getData);
-
+  
   const handleQty = (obj,e) =>{
      
-    getData.map((elem)=>{     
+    getData.map((elem)=>{  
+               
         if(obj.id===elem.id){
           if(e.target.value>0)
         {  
@@ -18,10 +19,9 @@ function ViewCart() {
           console.log("qty",elem.quntity)          
           console.log("qty",elem)          
         }       
-      })
-   
+      })   
   }
-  return (
+ return (
     <div className="viewCart">
       {getData.map((items) => {
         return (
