@@ -49,5 +49,4 @@ function Grocery() {
     </div>
   );
 }
-
 export default Grocery;
