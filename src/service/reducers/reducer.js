@@ -2,7 +2,7 @@ import { ADD_TO_CART, REMOVE_TO_CART } from "../constant";
 
 const initialState = {
   arrayValue: [],
-  data:[],
+  data: [],
   // cartData: [
   //   {
   //     id: 0,
@@ -69,7 +69,7 @@ const initialState = {
   //     quntity: 1,
   //   },
   // ],
-  
+
   // grocery: [
   //   {
   //     title: "Brown eggs",
@@ -288,16 +288,15 @@ const initialState = {
   //     price: 21.48,
   //     rating: 4,
   //   },
-    
+
   // ],
-  
 };
 
 export default function cardItems(state = initialState, action) {
   // console.clear();
   switch (action.type) {
     case ADD_TO_CART:
-      console.log("cardItems",action)
+      console.log("cardItems", action);
       let newObj = state.data.map((item) => {
         if (item.id == action.data.items.id) {
           return { ...item, added: true };
@@ -312,7 +311,6 @@ export default function cardItems(state = initialState, action) {
         arrayvalue: state.arrayValue.push(action.data.items),
       };
     case REMOVE_TO_CART:
-
       console.log("remove id", action.id);
 
       const newArrayValue = state.arrayValue.filter(
@@ -324,11 +322,11 @@ export default function cardItems(state = initialState, action) {
         arrayValue: newArrayValue,
       };
     case "FIREBASE_DATA":
-      console.log("FIREBASE_DATA",action.data)
-      return{
+      console.log("FIREBASE_DATA", action.data);
+      return {
         ...state,
-        data:action.data
-      }
+        data: action.data,
+      };
     default:
       return state;
   }

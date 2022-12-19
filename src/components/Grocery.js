@@ -1,19 +1,20 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { addToCart } from '../service/actions/action'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { addToCart } from "../service/actions/action";
 function Grocery() {
-    const dispatch =  useDispatch()
-    const selectGrocery = useSelector(state=>state.cartData.grocery )
-    console.log("grocery",  selectGrocery)
+  const dispatch = useDispatch();
+  const getGrocery = useSelector((state) => state.cartData.data);
+  const groceryData = getGrocery.filter((value) => value.type === "grocery");
+  console.log("grocery", groceryData);
   return (
     <div>
-      {
-        selectGrocery.map((items)=>{
-            return <div>
-                <div className="main">
+      {groceryData.map((items) => {
+        return (
+          <div>
+            <div className="main">
               <div className="container">
-                <img src={items.filename} alt="iphone img" />
+                <img src={items.imageUrl} alt="iphone img" />
               </div>
               <div className="about">
                 <h3>{items.name}</h3>
@@ -22,11 +23,11 @@ function Grocery() {
                   <div className="items_span">
                     <span>{items.price}</span>
                   </div>
-
                   <div>
                     {items?.added ? (
-
-                      <Link to="/ViewCart" className="btn btn-primary" >GO TO CART</Link>
+                      <Link to="/ViewCart" className="btn btn-primary">
+                        GO TO CART
+                      </Link>
                     ) : (
                       <button
                         onClick={() => dispatch(addToCart({ items: items }))}
@@ -35,16 +36,18 @@ function Grocery() {
                       </button>
                     )}
                   </div>
-                  <span> <button>Buy</button> </span>
+                  <span>
+                    {" "}
+                    <button>Buy</button>{" "}
+                  </span>
                 </div>
               </div>
             </div>
-            </div>
-            
-        })
-      }
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default Grocery
+export default Grocery;

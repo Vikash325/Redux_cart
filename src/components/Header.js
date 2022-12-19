@@ -10,9 +10,32 @@ function Header() {
   return (
     <div>
       <div>
-        <Link to="/Grocery">
-          <img src="/images/grocery/grocery.png" height="100px" width="100px" />
-        </Link>
+        <div>
+          <Link to="/grocery">
+            <img
+              src="/images/grocery/grocery.png"
+              height="100px"
+              width="100px"
+            />
+          </Link>
+        </div>
+        <div>
+          <label>Grocery</label>
+        </div>
+      </div>
+      <div>
+        <div>
+          <Link to="/iphone">
+            <img
+              src="/images/electronics/electronics.png" 
+              height="100px"
+              width="100px"
+            />
+          </Link>
+        </div>
+        <div>
+         <label>Phones & Laptop</label>
+        </div>
       </div>
       <div className="cart_img">
         <span>{selector.arrayValue.length}</span>

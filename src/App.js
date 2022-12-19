@@ -10,13 +10,18 @@ import { useEffect } from "react";
 import { db } from "./Firebase";
 import { useDispatch } from "react-redux";
 import { firebaseData } from "./service/actions/action";
+import { useState } from "react";
+
 
 
 function App() {
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();
+  const [loading,setLoading]=useState(false)
+
 
 useEffect(()=>{
   const getData=async()=>{
+    setLoading(true)
     let firebase_data=[]
     const docRef = collection(db, "cartData");
     const docSnap = await getDocs(docRef);    
@@ -24,20 +29,25 @@ useEffect(()=>{
       firebase_data.push(doc.data())
       console.log(doc.data());
   })  
+
   const firebase_da = dispatch(firebaseData({type:"FIREBASE_DATA",payload:firebase_data}))  
   console.log("firebase_da",firebase_da)
+  setLoading(false)
 }
   getData()
 },[])
   return (
     <div className="App">
-       <Header />  
-       {/* <Iphone/>     */}
-     <Routes>
+       <Header />         
+       {
+        loading ? <h4>Loading from firebase</h4>:
+         <Routes>
          <Route  path="/" element= {<Home/>} />
          <Route  path="/viewcart" element= {<ViewCart/>} />
          <Route  path="/grocery" element= {<Grocery/>} />         
+         <Route  path="/iphone" element= {<Iphone/>} />         
       </Routes>
+    }
     </div>
   );
 }
