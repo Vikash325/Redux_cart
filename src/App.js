@@ -11,6 +11,7 @@ import { db } from "./Firebase";
 import { useDispatch } from "react-redux";
 import { firebaseData } from "./service/actions/action";
 import { useState } from "react";
+import MainComponent from "./components/MainComponent";
 
 
 
@@ -38,7 +39,9 @@ useEffect(()=>{
 },[])
   return (
     <div className="App">
-       <Header />         
+    
+       <Header />    
+       <MainComponent/>
        {
         loading ? <h4>Loading from firebase</h4>:
          <Routes>
